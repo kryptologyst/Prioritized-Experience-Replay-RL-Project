@@ -1,0 +1,44 @@
+# Default configuration for Prioritized Experience Replay project
+defaults:
+  # Environment settings
+  env:
+    name: "CartPole-v1"
+    max_episode_steps: 500
+    render_mode: null
+    
+  # Agent settings
+  agent:
+    type: "DQN"  # Options: DQN, RainbowDQN, PPO, SAC, TD3
+    learning_rate: 0.001
+    batch_size: 32
+    buffer_size: 10000
+    target_update_frequency: 1000
+    
+  # Prioritized Experience Replay settings
+  per:
+    alpha: 0.6  # Prioritization strength (0 = uniform, 1 = full prioritization)
+    beta: 0.4   # Importance sampling correction (0 = no correction, 1 = full correction)
+    beta_increment: 0.001  # Beta increment per step
+    epsilon: 1e-6  # Small constant to avoid zero priorities
+    
+  # Training settings
+  training:
+    total_timesteps: 100000
+    eval_frequency: 10000
+    save_frequency: 50000
+    log_frequency: 1000
+    
+  # Exploration settings
+  exploration:
+    epsilon_start: 1.0
+    epsilon_end: 0.01
+    epsilon_decay: 0.995
+    
+  # Logging and visualization
+  logging:
+    use_wandb: false
+    use_tensorboard: true
+    log_dir: "logs"
+    
+  # Hardware settings
+  device: "auto"  # auto, cpu, cuda, mps
